@@ -38,12 +38,17 @@ namespace BookStoreWPF
             this.BookTable.ItemsSource = books;
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void Add_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        private void AddFilter_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ClearFilter_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -53,7 +58,7 @@ namespace BookStoreWPF
 
         }
 
-        private void DelBtn_Click(object sender, RoutedEventArgs e)
+        private void Delete_Click(object sender, RoutedEventArgs e)
         {
 
         }
