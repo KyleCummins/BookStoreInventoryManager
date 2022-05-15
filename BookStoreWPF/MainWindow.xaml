@@ -10,11 +10,9 @@
 
             <!-- Operations Header Menu -->
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_Add">
-                </MenuItem>
-                <MenuItem Header="_Delete">
-                </MenuItem>
-                <MenuItem Header="_Filter">
+            <MenuItem Header="_Add">
+            </MenuItem>
+            <MenuItem Header="_Filter">
                     <MenuItem Header="_Add Filter">
                     </MenuItem>
                     <MenuItem Header="_Clear Filters">
@@ -23,15 +21,31 @@
             </Menu>
 
             <!-- Book Info Table -->
-            <DataGrid Name ="bookTable" RowHeight="15">
+            <DataGrid Name ="bookTable" 
+                      RowHeight="15" 
+                      HorizontalAlignment="Stretch" 
+                      VerticalAlignment="Stretch"
+                      ScrollViewer.CanContentScroll="True"
+                      BorderBrush="#000" 
+                      BorderThickness="1"
+                      ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Title"/>
-                    <DataGridTextColumn Header="Author"/>
-                    <DataGridTextColumn Header="ISBN"/>
-                    <DataGridTextColumn Header="Genre"/>
-                    <DataGridTextColumn Header="Date Published"/>
-                    <DataGridTextColumn Header="Price"/>
-            </DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Delete">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="delBtn" Content="Delete" Click="delBtn_Click" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    
+                    <DataGridTextColumn Header="Title" Width="*"/>
+                    <DataGridTextColumn Header="Author" Width="*"/>
+                    <DataGridTextColumn Header="ISBN" Width="*"/>
+                    <DataGridTextColumn Header="Genre" Width="*"/>
+                    <DataGridTextColumn Header="Date Published" Width="*"/>
+                    <DataGridTextColumn Header="Price" Width="*"/>
+                </DataGrid.Columns>
             </DataGrid>
 
     </DockPanel>

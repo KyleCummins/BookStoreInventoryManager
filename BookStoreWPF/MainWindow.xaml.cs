@@ -31,8 +31,10 @@ namespace BookStoreWPF
         public MainWindow()
         {
             this.InitializeComponent();
+
+
+
+            //this.bookTable.ItemsSource = books;
         }
-
-
     }
 }
