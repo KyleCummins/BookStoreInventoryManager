@@ -1,4 +1,4 @@
-﻿// <copyright file="ModelBook.cs" company="Kyle David Cummins">
+﻿// <copyright file="ViewBook.cs" company="Kyle David Cummins">
 // Copyright (c) Kyle David Cummins. All rights reserved.
 // </copyright>
 
@@ -11,12 +11,12 @@ namespace BookStoreWPF
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Data class for storing information about a book.
+    /// Data class storing string representations of book properties for use in the View.
     /// </summary>
-    public class ModelBook
+    public class ViewBook
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ModelBook"/> class.
+        /// Initializes a new instance of the <see cref="ViewBook"/> class.
         /// </summary>
         /// <param name="title">Title of the book.</param>
         /// <param name="author">Author of the book.</param>
@@ -24,13 +24,13 @@ namespace BookStoreWPF
         /// <param name="genre">Genre of the book.</param>
         /// <param name="publishDate">Publishing date of the book.</param>
         /// <param name="price">Price of the book.</param>
-        public ModelBook(string title, string author, string isbn, string genre, DateTime publishDate, decimal price)
+        public ViewBook(string title, string author, string isbn, string genre, string publishDate, string price)
         {
             this.Title = title;
             this.Author = author;
             this.ISBN = isbn;
             this.Genre = genre;
-            this.PublishDate = publishDate;
+            this.Publishing_Date = publishDate;
             this.Price = price;
         }
 
@@ -57,11 +57,11 @@ namespace BookStoreWPF
         /// <summary>
         /// Gets or Sets the price of the book.
         /// </summary>
-        public decimal Price { get; set; }
+        public string Price { get; set; }
 
         /// <summary>
         /// Gets or Sets the publishing date of the book.
         /// </summary>
-        public DateTime PublishDate { get; set; }
+        public string Publishing_Date { get; set; }
     }
 }

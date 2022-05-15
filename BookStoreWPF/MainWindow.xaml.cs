@@ -18,7 +18,6 @@ namespace BookStoreWPF
     using System.Windows.Media.Imaging;
     using System.Windows.Navigation;
     using System.Windows.Shapes;
-    using Microsoft.Toolkit.Mvvm;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
@@ -32,9 +31,31 @@ namespace BookStoreWPF
         {
             this.InitializeComponent();
 
+            List<ViewBook> books = new List<ViewBook>();
 
+            books.Add(new ViewBook("Book1", "Me Myself", "000-0-00-000000-0", "Fiction", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$9.99"));
 
-            //this.bookTable.ItemsSource = books;
+            this.BookTable.ItemsSource = books;
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BookTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void DelBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

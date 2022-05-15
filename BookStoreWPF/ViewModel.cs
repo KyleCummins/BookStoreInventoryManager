@@ -15,5 +15,6 @@ namespace BookStoreWPF
     /// </summary>
     public class ViewModel
     {
+        
     }
 }

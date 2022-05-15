@@ -10,9 +10,9 @@
 
             <!-- Operations Header Menu -->
             <Menu DockPanel.Dock="Top">
-            <MenuItem Header="_Add">
+            <MenuItem Header="_Add" Click="MenuItem_Click">
             </MenuItem>
-            <MenuItem Header="_Filter">
+            <MenuItem Header="_Filter" Click="MenuItem_Click_1">
                     <MenuItem Header="_Add Filter">
                     </MenuItem>
                     <MenuItem Header="_Clear Filters">
@@ -21,32 +21,25 @@
             </Menu>
 
             <!-- Book Info Table -->
-            <DataGrid Name ="bookTable" 
-                      RowHeight="15" 
+        <DataGrid Name ="BookTable" 
+                      RowHeight="20" 
                       HorizontalAlignment="Stretch" 
                       VerticalAlignment="Stretch"
                       ScrollViewer.CanContentScroll="True"
                       BorderBrush="#000" 
                       BorderThickness="1"
                       ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                      ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Delete">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Name="delBtn" Content="Delete" Click="delBtn_Click" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    
-                    <DataGridTextColumn Header="Title" Width="*"/>
-                    <DataGridTextColumn Header="Author" Width="*"/>
-                    <DataGridTextColumn Header="ISBN" Width="*"/>
-                    <DataGridTextColumn Header="Genre" Width="*"/>
-                    <DataGridTextColumn Header="Date Published" Width="*"/>
-                    <DataGridTextColumn Header="Price" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
+                      ScrollViewer.VerticalScrollBarVisibility="Auto" SelectionChanged="BookTable_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="DelBtn" Content="Delete" Click="DelBtn_Click" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </DockPanel>
 
