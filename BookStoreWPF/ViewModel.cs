@@ -9,6 +9,7 @@ namespace BookStoreWPF
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using System.Windows.Input;
 
     /// <summary>
     /// Handles passing data to and from the View and Model.
@@ -47,23 +48,47 @@ namespace BookStoreWPF
             // Organize necessary events here
 
             this.UpdateNextID();
+
+            this.AddBook = new AddCommand(this.modelTable, this.nextID);
         }
 
         /// <summary>
-        /// Prompt the user for new book info and create book.
+        /// Subscriber to the model's BookChanged event.
         /// </summary>
-        private void AddBook()
+        /// <param name="source">Source object of event.</param>
+        /// <param name="args">Event args containing changed book.</param>
+        public void OnBookChanged(object source, BookChangedEventArgs args)
         {
-            AddWindow addWindow = new AddWindow();
-            AddWindowViewModel awvm = new AddWindowViewModel();
-            addWindow.DataContext = awvm;
+            int changedID = args.ChangedBook.GetID();
 
-            if (addWindow.ShowDialog() == true)
+            // Check if book is in current list.
+            int index = this.ViewTable.FindIndex(b => b.GetID() == changedID);
+            if (index >= 0)
             {
-                ModelBook newBook = new ModelBook(awvm.NewTitle, awvm.NewAuthor, awvm.NewISBN, awvm.NewGenre, awvm.NewDate, awvm.NewPrice, this.nextID++);
-                this.modelTable.AddBook(newBook);
+                // Book already exists, delete from view and add with new properties.
+
             }
         }
+
+        /// <summary>
+        /// Gets a command to prompt the user for new book info and create book.
+        /// </summary>
+        public ICommand AddBook { get; }
+
+        /// <summary>
+        /// Gets a command that removes the selected book from the list.
+        /// </summary>
+        public ICommand RemoveBook { get; }
+
+        /// <summary>
+        /// Gets a command that creates a new filter for displaying books.
+        /// </summary>
+        public ICommand AddFilter { get; }
+
+        /// <summary>
+        /// Gets a command that removes any applied filters.
+        /// </summary>
+        public ICommand ClearFilter { get; }
 
         /// <summary>
         /// Update the nextID field to reflect the model data.

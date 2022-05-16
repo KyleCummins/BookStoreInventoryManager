@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookStoreWPF"
         mc:Ignorable="d"
-        Title="Add New Book" Height="175" Width="400">
+        Title="Add New Book" Height="200" Width="400">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -21,33 +21,33 @@
 
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <TextBlock>Title:</TextBlock>
-            <TextBox Text="{Binding NewTitle}"/>
+            <TextBox Text="{Binding NewTitle}" Width="200"/>
         </StackPanel>
 
 
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <TextBlock>Author's Name:</TextBlock>
-            <TextBox Text="{Binding NewAuthor}"/>
+            <TextBox Text="{Binding NewAuthor}" Width="200"/>
         </StackPanel>
 
         <StackPanel Grid.Row="3" Orientation="Horizontal">
             <TextBlock>ISBN:</TextBlock>
-            <TextBox Text="{Binding NewISBN}"/>
+            <TextBox Text="{Binding NewISBN}" Width="200"/>
         </StackPanel>
 
         <StackPanel Grid.Row="4" Orientation="Horizontal">
             <TextBlock>Genre:</TextBlock>
-            <TextBox Text="{Binding NewGenre}"/>
+            <TextBox Text="{Binding NewGenre}" Width="200"/>
         </StackPanel>
 
         <StackPanel Grid.Row="5" Orientation="Horizontal">
             <TextBlock>Date Published:</TextBlock>
-            <TextBox Text="{Binding NewDate}"/>
+            <TextBox Text="{Binding NewDate}" Width="200"/>
         </StackPanel>
 
         <StackPanel Grid.Row="6" Orientation="Horizontal">
             <TextBlock>Book Price:</TextBlock>
-            <TextBox Text="{Binding NewTitle}"/>
+            <TextBox Text="{Binding NewTitle}" Width="200"/>
         </StackPanel>
 
         <StackPanel Grid.Row="7" Orientation="Horizontal">

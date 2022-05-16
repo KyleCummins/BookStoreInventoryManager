@@ -32,27 +32,7 @@ namespace BookStoreWPF
             this.InitializeComponent();
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AddFilter_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ClearFilter_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void BookTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Delete_Click(object sender, RoutedEventArgs e)
         {
 
         }

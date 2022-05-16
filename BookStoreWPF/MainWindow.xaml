@@ -11,7 +11,7 @@
 
             <!-- Operations Header Menu -->
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_Add" Click="Add_Click">
+                <MenuItem Header="_Add" Command="{Binding AddBook}">
                 </MenuItem>
                 <MenuItem Header="_Filter">
                     <MenuItem Header="_Add Filter" Click="AddFilter_Click">
