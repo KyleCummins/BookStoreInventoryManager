@@ -42,6 +42,23 @@ namespace BookStoreWPF
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="ViewBook"/> class.
+        /// </summary>
+        /// <param name="modelBook">ModelBook to copy values from.</param>
+        public ViewBook(ModelBook modelBook)
+        {
+            this.Title = modelBook.Title;
+            this.Author = modelBook.Author;
+            this.ISBN = modelBook.ISBN;
+            this.Genre = modelBook.Genre;
+
+            this.Publishing_Date = modelBook.PublishDate.ToString("MM/dd/yyyy");
+            this.Price = "$" + modelBook.Price.ToString("0.##");
+
+            this.id = modelBook.GetID();
+        }
+
+        /// <summary>
         /// Gets or sets the title of the book.
         /// </summary>
         public string Title { get; set; }
