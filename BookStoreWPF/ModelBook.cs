@@ -42,6 +42,53 @@ namespace BookStoreWPF
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="ModelBook"/> class.
+        /// </summary>
+        /// <param name="title">Title of the book.</param>
+        /// <param name="author">Author of the book.</param>
+        /// <param name="isbn">ISBN of the book.</param>
+        /// <param name="genre">Genre of the book.</param>
+        /// <param name="publishDate">Publishing date of the book.</param>
+        /// <param name="price">Price of the book.</param>
+        /// <param name="newID">Internal ID of the book.</param>
+        public ModelBook(string title, string author, string isbn, string genre, string publishDate, string price, int newID)
+        {
+            this.Title = title;
+            this.Author = author;
+            this.ISBN = isbn;
+            this.Genre = genre;
+
+            // Try to parse date, on failure set date to min.
+            try
+            {
+                this.PublishDate = DateTime.Parse(publishDate);
+            }
+            catch
+            {
+                this.PublishDate = DateTime.MinValue;
+            }
+
+            // Try to parse price, on failure set price to 0.
+            try
+            {
+                this.Price = decimal.Parse(price);
+            }
+            catch
+            {
+                try
+                {
+                    this.Price = decimal.Parse(price.Substring(1));
+                }
+                catch
+                {
+                    this.Price = 0;
+                }
+            }
+
+            this.id = newID;
+        }
+
+        /// <summary>
         /// Gets or sets the title of the book.
         /// </summary>
         public string Title { get; set; }

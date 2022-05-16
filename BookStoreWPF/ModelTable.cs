@@ -65,5 +65,24 @@ namespace BookStoreWPF
         {
             // TO DO: complete book updating functionality.
         }
+
+        /// <summary>
+        /// Returns the highest ID number in the current list.
+        /// </summary>
+        /// <returns>Highest found ID number.</returns>
+        public int GetHighestID()
+        {
+            int max = -1;
+
+            foreach (ModelBook book in this.bookList)
+            {
+                if (book.GetID() > max)
+                {
+                    max = book.GetID();
+                }
+            }
+
+            return max;
+        }
     }
 }
