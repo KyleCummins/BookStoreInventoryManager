@@ -16,6 +16,11 @@ namespace BookStoreWPF
     public class ModelBook
     {
         /// <summary>
+        /// Internal ID of the book.
+        /// </summary>
+        private int id;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ModelBook"/> class.
         /// </summary>
         /// <param name="title">Title of the book.</param>
@@ -24,7 +29,8 @@ namespace BookStoreWPF
         /// <param name="genre">Genre of the book.</param>
         /// <param name="publishDate">Publishing date of the book.</param>
         /// <param name="price">Price of the book.</param>
-        public ModelBook(string title, string author, string isbn, string genre, DateTime publishDate, decimal price)
+        /// <param name="newID">Internal ID of the book.</param>
+        public ModelBook(string title, string author, string isbn, string genre, DateTime publishDate, decimal price, int newID)
         {
             this.Title = title;
             this.Author = author;
@@ -32,6 +38,7 @@ namespace BookStoreWPF
             this.Genre = genre;
             this.PublishDate = publishDate;
             this.Price = price;
+            this.id = newID;
         }
 
         /// <summary>
@@ -63,5 +70,14 @@ namespace BookStoreWPF
         /// Gets or Sets the publishing date of the book.
         /// </summary>
         public DateTime PublishDate { get; set; }
+
+        /// <summary>
+        /// Gets the internal ID of the book.
+        /// </summary>
+        /// <returns>Internal ID of the book as an int.</returns>
+        public int GetID()
+        {
+            return this.id;
+        }
     }
 }
