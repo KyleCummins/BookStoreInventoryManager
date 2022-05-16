@@ -20,54 +20,54 @@ namespace BookStoreWPF
         /// </summary>
         public FilterWindowViewModel()
         {
-            this.Title = null;
-            this.Author = null;
-            this.ISBN = null;
-            this.Genre = null;
-            this.MinDate = null;
-            this.MaxDate = null;
-            this.MinPrice = null;
-            this.MaxPrice = null;
+            this.Title = string.Empty;
+            this.Author = string.Empty;
+            this.ISBN = string.Empty;
+            this.Genre = string.Empty;
+            this.MinDate = string.Empty;
+            this.MaxDate = string.Empty;
+            this.MinPrice = string.Empty;
+            this.MaxPrice = string.Empty;
         }
 
         /// <summary>
         /// Gets or sets the title to search for.
         /// </summary>
-        public string? Title { get; set; }
+        public string Title { get; set; }
 
         /// <summary>
         /// Gets or sets the author to search for.
         /// </summary>
-        public string? Author { get; set; }
+        public string Author { get; set; }
 
         /// <summary>
         /// Gets or sets the ISBN to search for.
         /// </summary>
-        public string? ISBN { get; set; }
+        public string ISBN { get; set; }
 
         /// <summary>
         /// Gets or sets the primary genre to search for.
         /// </summary>
-        public string? Genre { get; set; }
+        public string Genre { get; set; }
 
         /// <summary>
         /// Gets or Sets the minimum price to be included in the search.
         /// </summary>
-        public decimal? MinPrice { get; set; }
+        public string MinPrice { get; set; }
 
         /// <summary>
         /// Gets or Sets the maximum price to be included in the search.
         /// </summary>
-        public decimal? MaxPrice { get; set; }
+        public string MaxPrice { get; set; }
 
         /// <summary>
         /// Gets or Sets the earliest publishing date to be included in the search.
         /// </summary>
-        public DateTime? MinDate { get; set; }
+        public string MinDate { get; set; }
 
         /// <summary>
         /// Gets or Sets the latest publishing date to be included in the search.
         /// </summary>
-        public DateTime? MaxDate { get; set; }
+        public string MaxDate { get; set; }
     }
 }

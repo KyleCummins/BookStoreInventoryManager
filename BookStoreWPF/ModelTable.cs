@@ -26,6 +26,8 @@ namespace BookStoreWPF
         public ModelTable()
         {
             this.bookList = new List<ModelBook>();
+
+            this.ActiveFilter = new Filter();
         }
 
         /// <summary>
@@ -41,11 +43,15 @@ namespace BookStoreWPF
         public event BookChangedEventHandler BookChanged;
 
         /// <summary>
+        /// Gets or Sets currently active set of search filters.
+        /// </summary>
+        public Filter ActiveFilter { get; set; }
+
+        /// <summary>
         /// Retrieves a list of books matching a provided search filter.
         /// </summary>
-        /// <param name="filter">Search filter which returned entries must match.</param>
         /// <returns>List of book entries which match the provided filter.</returns>
-        public List<ModelBook> GetBooks(Filter filter)
+        public List<ModelBook> GetBooks()
         {
             // TO DO: complete linq querying.
             return this.bookList;

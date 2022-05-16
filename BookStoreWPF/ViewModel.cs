@@ -22,8 +22,6 @@ namespace BookStoreWPF
         /// </summary>
         private int nextID = 0;
 
-        private Filter activeFilter;
-
         /// <summary>
         /// Gets or sets book list to be displayed to main window.
         /// </summary>
@@ -47,8 +45,6 @@ namespace BookStoreWPF
             this.ViewTable = new List<ViewBook>();
 
             this.modelTable = new ModelTable();
-
-            this.activeFilter = new Filter();
 
             // Test Binding
             this.ViewTable.Add(new ViewBook("Book1", "Me Myself", "000-0-00-000000-0", "Science Fiction", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$9.99", 0));
@@ -92,7 +88,7 @@ namespace BookStoreWPF
         {
             this.ViewTable.Clear();
 
-            List<ModelBook> newList = this.modelTable.GetBooks(this.activeFilter);
+            List<ModelBook> newList = this.modelTable.GetBooks();
 
             foreach (ModelBook book in newList)
             {
