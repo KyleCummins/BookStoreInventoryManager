@@ -46,6 +46,7 @@ namespace BookStoreWPF
             this.ViewTable.Add(new ViewBook("Book1", "Me Myself", "000-0-00-000000-0", "Fiction", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$9.99", 0));
 
             // Organize necessary events here
+            this.modelTable.BookChanged += this.OnBookChanged;
 
             this.UpdateNextID();
 
@@ -65,9 +66,11 @@ namespace BookStoreWPF
             int index = this.ViewTable.FindIndex(b => b.GetID() == changedID);
             if (index >= 0)
             {
-                // Book already exists, delete from view and add with new properties.
-
+                // Book already exists, delete from view before adding.
+                this.ViewTable.RemoveAt(index);
             }
+
+            this.ViewTable.Add(new ViewBook(args.ChangedBook));
         }
 
         /// <summary>

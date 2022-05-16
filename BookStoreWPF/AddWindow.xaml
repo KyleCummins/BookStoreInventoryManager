@@ -47,7 +47,7 @@
 
         <StackPanel Grid.Row="6" Orientation="Horizontal">
             <TextBlock>Book Price:</TextBlock>
-            <TextBox Text="{Binding NewTitle}" Width="200"/>
+            <TextBox Text="{Binding NewPrice}" Width="200"/>
         </StackPanel>
 
         <StackPanel Grid.Row="7" Orientation="Horizontal">

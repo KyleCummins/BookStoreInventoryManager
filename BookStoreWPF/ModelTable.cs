@@ -29,6 +29,18 @@ namespace BookStoreWPF
         }
 
         /// <summary>
+        /// Event handler for BookChanged event.
+        /// </summary>
+        /// <param name="source">Source of event.</param>
+        /// <param name="args">Event args.</param>
+        public delegate void BookChangedEventHandler(object source, BookChangedEventArgs args);
+
+        /// <summary>
+        /// Event signalling that a book has been changed.
+        /// </summary>
+        public event BookChangedEventHandler BookChanged;
+
+        /// <summary>
         /// Retrieves a list of books matching a provided search filter.
         /// </summary>
         /// <param name="filter">Search filter which returned entries must match.</param>
@@ -46,6 +58,8 @@ namespace BookStoreWPF
         public void AddBook(ModelBook newBook)
         {
             this.bookList.Add(newBook);
+
+            this.PublishBookChanged(newBook);
         }
 
         /// <summary>
@@ -83,6 +97,18 @@ namespace BookStoreWPF
             }
 
             return max;
+        }
+
+        /// <summary>
+        /// Publishes BookChanged event.
+        /// </summary>
+        /// <param name="changedBook">Book which was changed.</param>
+        public void PublishBookChanged(ModelBook changedBook)
+        {
+            if (this.BookChanged != null)
+            {
+                this.BookChanged(this, new BookChangedEventArgs(changedBook));
+            }
         }
     }
 }

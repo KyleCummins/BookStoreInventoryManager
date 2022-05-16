@@ -14,9 +14,9 @@
                 <MenuItem Header="_Add" Command="{Binding AddBook}">
                 </MenuItem>
                 <MenuItem Header="_Filter">
-                    <MenuItem Header="_Add Filter" Click="AddFilter_Click">
+                    <MenuItem Header="_Add Filter">
                     </MenuItem>
-                    <MenuItem Header="_Clear Filter" Click="ClearFilter_Click">
+                    <MenuItem Header="_Clear Filter">
                     </MenuItem>
                 </MenuItem>
             </Menu>
@@ -36,7 +36,7 @@
                 <DataGridTemplateColumn Header="Delete">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="DelBtn" Content="Delete" Click="Delete_Click" />
+                            <Button Name="DelBtn" Content="Delete"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
