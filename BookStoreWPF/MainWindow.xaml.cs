@@ -32,6 +32,14 @@ namespace BookStoreWPF
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// When the viewmodel changes, update book table.
+        /// </summary>
+        public void OnViewModelPropertyChanged()
+        {
+            this.BookTable.Items.Refresh();
+        }
+
         private void BookTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 

@@ -17,7 +17,17 @@ namespace BookStoreWPF
     /// </summary>
     public partial class App : Application
     {
+        /*
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        public void OnStartup(StartupEventArgs e)
+        {
+            
+            base.OnStartup(e);
+        }
+        */
     }
-
 
 }

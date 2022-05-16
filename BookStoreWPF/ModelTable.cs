@@ -103,7 +103,7 @@ namespace BookStoreWPF
         /// Publishes BookChanged event.
         /// </summary>
         /// <param name="changedBook">Book which was changed.</param>
-        public void PublishBookChanged(ModelBook changedBook)
+        private void PublishBookChanged(ModelBook changedBook)
         {
             if (this.BookChanged != null)
             {

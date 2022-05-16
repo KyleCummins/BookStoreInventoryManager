@@ -6,6 +6,7 @@ namespace BookStoreWPF
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -14,12 +15,14 @@ namespace BookStoreWPF
     /// <summary>
     /// Handles passing data to and from the View and Model.
     /// </summary>
-    public class ViewModel
+    public class ViewModel : INotifyPropertyChanged
     {
         /// <summary>
         /// Next ID to assign to newly created books.
         /// </summary>
         private int nextID = 0;
+
+        private Filter activeFilter;
 
         /// <summary>
         /// Gets or sets book list to be displayed to main window.
@@ -32,6 +35,11 @@ namespace BookStoreWPF
         private ModelTable modelTable;
 
         /// <summary>
+        /// Event signalling that a property of the ViewModel has been changed.
+        /// </summary>
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ViewModel"/> class.
         /// </summary>
         public ViewModel()
@@ -40,10 +48,12 @@ namespace BookStoreWPF
 
             this.modelTable = new ModelTable();
 
+            this.activeFilter = new Filter();
+
             // Test Binding
-            this.ViewTable.Add(new ViewBook("Book1", "Me Myself", "000-0-00-000000-0", "Fiction", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$9.99", 0));
-            this.ViewTable.Add(new ViewBook("Book1", "Me Myself", "000-0-00-000000-0", "Fiction", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$9.99", 0));
-            this.ViewTable.Add(new ViewBook("Book1", "Me Myself", "000-0-00-000000-0", "Fiction", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$9.99", 0));
+            this.ViewTable.Add(new ViewBook("Book1", "Me Myself", "000-0-00-000000-0", "Science Fiction", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$9.99", 0));
+            this.ViewTable.Add(new ViewBook("Book2", "You Yourself", "000-0-00-000000-1", "Nonfiction", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$19.99", 1));
+            this.ViewTable.Add(new ViewBook("Book3", "Fred", "000-0-00-000000-2", "Comedy", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$0", 2));
 
             // Organize necessary events here
             this.modelTable.BookChanged += this.OnBookChanged;
@@ -51,26 +61,6 @@ namespace BookStoreWPF
             this.UpdateNextID();
 
             this.AddBook = new AddCommand(this.modelTable, this.nextID);
-        }
-
-        /// <summary>
-        /// Subscriber to the model's BookChanged event.
-        /// </summary>
-        /// <param name="source">Source object of event.</param>
-        /// <param name="args">Event args containing changed book.</param>
-        public void OnBookChanged(object source, BookChangedEventArgs args)
-        {
-            int changedID = args.ChangedBook.GetID();
-
-            // Check if book is in current list.
-            int index = this.ViewTable.FindIndex(b => b.GetID() == changedID);
-            if (index >= 0)
-            {
-                // Book already exists, delete from view before adding.
-                this.ViewTable.RemoveAt(index);
-            }
-
-            this.ViewTable.Add(new ViewBook(args.ChangedBook));
         }
 
         /// <summary>
@@ -92,6 +82,36 @@ namespace BookStoreWPF
         /// Gets a command that removes any applied filters.
         /// </summary>
         public ICommand ClearFilter { get; }
+
+        /// <summary>
+        /// Subscriber to the model's BookChanged event.
+        /// </summary>
+        /// <param name="source">Source object of event.</param>
+        /// <param name="args">Event args containing changed book.</param>
+        public void OnBookChanged(object source, BookChangedEventArgs args)
+        {
+            this.ViewTable.Clear();
+
+            List<ModelBook> newList = this.modelTable.GetBooks(this.activeFilter);
+
+            foreach (ModelBook book in newList)
+            {
+                this.ViewTable.Add(new ViewBook(book));
+            }
+
+            this.PublishPropertyChanged();
+        }
+
+        /// <summary>
+        /// Publishes the PropertyChanged event.
+        /// </summary>
+        private void PublishPropertyChanged()
+        {
+            if (this.PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(null));
+            }
+        }
 
         /// <summary>
         /// Update the nextID field to reflect the model data.
