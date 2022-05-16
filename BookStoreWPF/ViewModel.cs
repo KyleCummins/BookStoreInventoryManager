@@ -20,7 +20,10 @@ namespace BookStoreWPF
         /// </summary>
         private int nextID = 0;
 
-        private List<ViewBook> viewTable;
+        /// <summary>
+        /// Gets or sets book list to be displayed to main window.
+        /// </summary>
+        public List<ViewBook> ViewTable { get; set; }
 
         /// <summary>
         /// Model serving as the backend data storage.
@@ -32,9 +35,14 @@ namespace BookStoreWPF
         /// </summary>
         public ViewModel()
         {
-            this.viewTable = new List<ViewBook>();
+            this.ViewTable = new List<ViewBook>();
 
             this.modelTable = new ModelTable();
+
+            // Test Binding
+            this.ViewTable.Add(new ViewBook("Book1", "Me Myself", "000-0-00-000000-0", "Fiction", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$9.99", 0));
+            this.ViewTable.Add(new ViewBook("Book1", "Me Myself", "000-0-00-000000-0", "Fiction", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$9.99", 0));
+            this.ViewTable.Add(new ViewBook("Book1", "Me Myself", "000-0-00-000000-0", "Fiction", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$9.99", 0));
 
             // Organize necessary events here
 
@@ -44,7 +52,7 @@ namespace BookStoreWPF
         /// <summary>
         /// Prompt the user for new book info and create book.
         /// </summary>
-        public void AddBook()
+        private void AddBook()
         {
             AddWindow addWindow = new AddWindow();
             AddWindowViewModel awvm = new AddWindowViewModel();

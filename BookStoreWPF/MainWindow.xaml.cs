@@ -30,12 +30,6 @@ namespace BookStoreWPF
         public MainWindow()
         {
             this.InitializeComponent();
-
-            List<ViewBook> books = new List<ViewBook>();
-
-            books.Add(new ViewBook("Book1", "Me Myself", "000-0-00-000000-0", "Fiction", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$9.99", 0));
-
-            this.BookTable.ItemsSource = books;
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)

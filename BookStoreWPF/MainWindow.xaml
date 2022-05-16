@@ -4,9 +4,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Book Store Inventory Manager" Height="450" Width="800">
+        Title="Book Store Inventory Manager" Height="450" Width="800"
+        DataContext="{StaticResource ViewModel}">
 
-        <DockPanel>
+    <DockPanel>
 
             <!-- Operations Header Menu -->
             <Menu DockPanel.Dock="Top">
@@ -29,7 +30,8 @@
                       BorderBrush="#000" 
                       BorderThickness="1"
                       ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                      ScrollViewer.VerticalScrollBarVisibility="Auto" SelectionChanged="BookTable_SelectionChanged">
+                      ScrollViewer.VerticalScrollBarVisibility="Auto" SelectionChanged="BookTable_SelectionChanged"
+                      ItemsSource="{Binding ViewTable}">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Delete">
                     <DataGridTemplateColumn.CellTemplate>
