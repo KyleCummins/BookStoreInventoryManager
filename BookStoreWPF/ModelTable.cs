@@ -109,7 +109,7 @@ namespace BookStoreWPF
                 oldFilteredBooks = filteredBooks;
             }
 
-            if (this.activeFilter.Title != null)
+            if (this.activeFilter.MaxPrice != null)
             {
                 filteredBooks = from book in oldFilteredBooks where book.Price <= this.activeFilter.MaxPrice select book;
             }
