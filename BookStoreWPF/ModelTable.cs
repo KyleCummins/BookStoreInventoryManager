@@ -32,7 +32,7 @@ namespace BookStoreWPF
         {
             this.bookList = new List<ModelBook>();
 
-            this.SetActiveFilter(new Filter());
+            this.activeFilter = new Filter();
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace BookStoreWPF
         /// <summary>
         /// Event signalling that a book has been changed.
         /// </summary>
-        public event BookChangedEventHandler BookChanged;
+        public event BookChangedEventHandler? BookChanged;
 
         /// <summary>
         /// Updates the currently active filter.
@@ -131,10 +131,12 @@ namespace BookStoreWPF
         /// <summary>
         /// Removes the book with the given ID from the list.
         /// </summary>
-        /// <param name="iD">ID of the book to be removed.</param>
-        public void RemoveBook(int iD)
+        /// <param name="id">ID of the book to be removed.</param>
+        public void RemoveBook(int id)
         {
-            // TO DO: complete linq find and delete.
+            this.bookList.RemoveAll(x => x.GetID() == id);
+
+            this.PublishBookChanged(null);
         }
 
         /// <summary>

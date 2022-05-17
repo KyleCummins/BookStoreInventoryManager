@@ -18,6 +18,7 @@ namespace BookStoreWPF
     using System.Windows.Media.Imaging;
     using System.Windows.Navigation;
     using System.Windows.Shapes;
+    using System.ComponentModel;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
@@ -33,9 +34,11 @@ namespace BookStoreWPF
         }
 
         /// <summary>
-        /// When the viewmodel changes, update book table.
+        /// Update view when viewmodel changes.
         /// </summary>
-        public void OnViewModelPropertyChanged()
+        /// <param name="source">Source of event.</param>
+        /// <param name="e">Event args.</param>
+        public void OnViewModelPropertyChanged(object source, PropertyChangedEventArgs e)
         {
             this.BookTable.Items.Refresh();
         }

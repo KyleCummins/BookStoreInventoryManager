@@ -22,7 +22,7 @@ namespace BookStoreWPF
         /// </summary>
         /// <param name="model">ModelTable to add the book to.</param>
         /// <param name="nextID">ID to give the new book.</param>
-        public DeleteCommand(ModelTable model, int nextID)
+        public DeleteCommand(ModelTable model)
         {
             this.model = model;
         }

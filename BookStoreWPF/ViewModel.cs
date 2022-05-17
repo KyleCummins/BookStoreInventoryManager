@@ -23,19 +23,9 @@ namespace BookStoreWPF
         private int nextID = 0;
 
         /// <summary>
-        /// Gets or sets book list to be displayed to main window.
-        /// </summary>
-        public List<ViewBook> ViewTable { get; set; }
-
-        /// <summary>
         /// Model serving as the backend data storage.
         /// </summary>
         private ModelTable modelTable;
-
-        /// <summary>
-        /// Event signalling that a property of the ViewModel has been changed.
-        /// </summary>
-        public event PropertyChangedEventHandler? PropertyChanged;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewModel"/> class.
@@ -51,15 +41,29 @@ namespace BookStoreWPF
             this.ViewTable.Add(new ViewBook("Book2", "You Yourself", "000-0-00-000000-1", "Nonfiction", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$19.99", 1));
             this.ViewTable.Add(new ViewBook("Book3", "Fred", "000-0-00-000000-2", "Comedy", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$0", 2));
 
+            MainWindow mainWindow = System.Windows.Application.Current.Windows.OfType<MainWindow>().First();
+
             // Organize necessary events here
             this.modelTable.BookChanged += this.OnBookChanged;
+            this.PropertyChanged += mainWindow.OnViewModelPropertyChanged;
 
             this.UpdateNextID();
 
             this.AddBook = new AddCommand(this.modelTable, this.nextID);
             this.AddFilter = new AddFilterCommand(this.modelTable);
             this.ClearFilter = new ClearFilterCommand(this.modelTable);
+            this.RemoveBook = new DeleteCommand(this.modelTable);
         }
+
+        /// <summary>
+        /// Event signalling that a property of the ViewModel has been changed.
+        /// </summary>
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        /// <summary>
+        /// Gets or sets book list to be displayed to main window.
+        /// </summary>
+        public List<ViewBook> ViewTable { get; set; }
 
         /// <summary>
         /// Gets a command to prompt the user for new book info and create book.

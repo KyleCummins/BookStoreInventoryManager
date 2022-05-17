@@ -19,12 +19,17 @@ namespace BookStoreWPF
     {
         /*
         /// <summary>
-        /// 
+        /// Startup code to bind view to viewmodel.
         /// </summary>
-        /// <param name="e"></param>
-        public void OnStartup(StartupEventArgs e)
+        /// <param name="e">Event arguments.</param>
+        protected override void OnStartup(StartupEventArgs e)
         {
-            
+            ViewModel? vm = Application.Current.FindResource("ViewModel") as ViewModel;
+
+            MainWindow? mainWindow = System.Windows.Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            vm.PropertyChanged += mainWindow.OnViewModelPropertyChanged;
+
             base.OnStartup(e);
         }
         */
