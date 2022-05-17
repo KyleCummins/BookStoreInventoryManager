@@ -1,0 +1,52 @@
+﻿<Window x:Class="BookStoreWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Book Store Inventory Manager" Height="450" Width="800"
+        DataContext="{StaticResource ViewModel}">
+
+    <DockPanel>
+
+            <!-- Operations Header Menu -->
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_Add" Command="{Binding AddBook}">
+                </MenuItem>
+                <MenuItem Header="_Filter">
+                    <MenuItem Header="_Add Filter" Command="{Binding AddFilter}">
+                    </MenuItem>
+                    <MenuItem Header="_Clear Filter" Command="{Binding ClearFilter}">
+                    </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Debug Delete Button" Command="{Binding RemoveBook}" CommandParameter="{Binding SelectedBook}">
+            </MenuItem>
+        </Menu>
+
+            <!-- Book Info Table -->
+        <DataGrid Name ="BookTable" 
+                  RowHeight="20" 
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch"
+                  ScrollViewer.CanContentScroll="True"
+                  BorderBrush="#000" 
+                  BorderThickness="1"
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto" SelectionChanged="BookTable_SelectionChanged"
+                  ItemsSource="{Binding ViewTable}"
+                  SelectedItem="{Binding SelectedBook, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="DelBtn" Content="Delete" Command="{Binding RemoveBook}" CommandParameter="{Binding SelectedBook}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </DockPanel>
+
+        
+</Window>

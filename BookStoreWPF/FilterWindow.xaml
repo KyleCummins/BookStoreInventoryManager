@@ -1,0 +1,69 @@
+﻿<Window x:Class="BookStoreWPF.FilterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookStoreWPF"
+        mc:Ignorable="d"
+        Title="Book Filter Specification" Height="250" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0">Please specify any fields to specify in the filter (leave blank to ignore):</TextBlock>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <TextBlock>Title:</TextBlock>
+            <TextBox Text="{Binding Title}" Width="200"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <TextBlock>Author's Name:</TextBlock>
+            <TextBox Text="{Binding Author}" Width="200"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <TextBlock>ISBN:</TextBlock>
+            <TextBox Text="{Binding ISBN}" Width="200"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal">
+            <TextBlock>Genre:</TextBlock>
+            <TextBox Text="{Binding Genre}" Width="200"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Orientation="Horizontal">
+            <TextBlock>Earliest Date Published:</TextBlock>
+            <TextBox Text="{Binding MinDate}" Width="200"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="6" Orientation="Horizontal">
+            <TextBlock>Latest Date Published:</TextBlock>
+            <TextBox Text="{Binding MaxDate}" Width="200"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="7" Orientation="Horizontal">
+            <TextBlock>Lowest Price:</TextBlock>
+            <TextBox Text="{Binding MinPrice}" Width="200"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="8" Orientation="Horizontal">
+            <TextBlock>Highest Price:</TextBlock>
+            <TextBox Text="{Binding MaxPrice}" Width="200"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="9" Orientation="Horizontal">
+            <Button Name="SubmitBtn" Content="Submit" Click="SubmitBtn_Click"/>
+            <Button Name="CancelBtn" Content="Cancel" Click="CancelBtn_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
