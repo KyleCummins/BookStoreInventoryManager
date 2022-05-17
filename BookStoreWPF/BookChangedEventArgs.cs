@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Event arguments for updating ViewModel when Model is changed.
+    /// Event arguments for updating viewmodel when model is changed.
     /// </summary>
     public class BookChangedEventArgs : EventArgs
     {
@@ -15,7 +15,7 @@
         /// Initializes a new instance of the <see cref="BookChangedEventArgs"/> class.
         /// </summary>
         /// <param name="changedBook">Book changed.</param>
-        public BookChangedEventArgs(ModelBook changedBook)
+        public BookChangedEventArgs(ModelBook? changedBook = null)
         {
             this.ChangedBook = changedBook;
         }
@@ -23,6 +23,6 @@
         /// <summary>
         /// Gets or sets book which was changed.
         /// </summary>
-        public ModelBook ChangedBook { get; set; }
+        public ModelBook? ChangedBook { get; set; }
     }
 }

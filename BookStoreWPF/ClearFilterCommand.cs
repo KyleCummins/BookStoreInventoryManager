@@ -35,7 +35,7 @@ namespace BookStoreWPF
         /// <param name="parameter">Relevant parameters.</param>
         public override void Execute(object parameter)
         {
-            model.ActiveFilter = new Filter();
+            this.model.SetActiveFilter(new Filter());
         }
     }
 }

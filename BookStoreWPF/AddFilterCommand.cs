@@ -97,7 +97,7 @@
                     }
                 }
 
-                this.model.ActiveFilter = newFilter;
+                this.model.SetActiveFilter(newFilter);
             }
         }
     }

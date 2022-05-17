@@ -57,6 +57,8 @@ namespace BookStoreWPF
             this.UpdateNextID();
 
             this.AddBook = new AddCommand(this.modelTable, this.nextID);
+            this.AddFilter = new AddFilterCommand(this.modelTable);
+            this.ClearFilter = new ClearFilterCommand(this.modelTable);
         }
 
         /// <summary>

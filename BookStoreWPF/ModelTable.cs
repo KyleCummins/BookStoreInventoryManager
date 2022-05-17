@@ -21,13 +21,18 @@ namespace BookStoreWPF
         private List<ModelBook> bookList;
 
         /// <summary>
+        /// Currently active set of search filters.
+        /// </summary>
+        private Filter activeFilter;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ModelTable"/> class.
         /// </summary>
         public ModelTable()
         {
             this.bookList = new List<ModelBook>();
 
-            this.ActiveFilter = new Filter();
+            this.SetActiveFilter(new Filter());
         }
 
         /// <summary>
@@ -43,18 +48,73 @@ namespace BookStoreWPF
         public event BookChangedEventHandler BookChanged;
 
         /// <summary>
-        /// Gets or Sets currently active set of search filters.
+        /// Updates the currently active filter.
         /// </summary>
-        public Filter ActiveFilter { get; set; }
+        /// <param name="newFilter">New set of filter parameters.</param>
+        public void SetActiveFilter(Filter newFilter)
+        {
+            this.activeFilter = newFilter;
+
+            this.PublishBookChanged(null);
+        }
 
         /// <summary>
-        /// Retrieves a list of books matching a provided search filter.
+        /// Retrieves the list of books matching the active search filter.
         /// </summary>
         /// <returns>List of book entries which match the provided filter.</returns>
         public List<ModelBook> GetBooks()
         {
-            // TO DO: complete linq querying.
-            return this.bookList;
+            IEnumerable<ModelBook> filteredBooks = this.bookList;
+            IEnumerable<ModelBook> oldFilteredBooks = filteredBooks;
+
+            if (this.activeFilter.Title != null)
+            {
+                filteredBooks = from book in oldFilteredBooks where book.Title == this.activeFilter.Title select book;
+                oldFilteredBooks = filteredBooks;
+            }
+
+            if (this.activeFilter.Author != null)
+            {
+                filteredBooks = from book in oldFilteredBooks where book.Author == this.activeFilter.Author select book;
+                oldFilteredBooks = filteredBooks;
+            }
+
+            if (this.activeFilter.ISBN != null)
+            {
+                filteredBooks = (List<ModelBook>)(from book in oldFilteredBooks where book.ISBN == this.activeFilter.ISBN select book);
+                oldFilteredBooks = filteredBooks;
+            }
+
+            if (this.activeFilter.Genre != null)
+            {
+                filteredBooks = from book in oldFilteredBooks where book.Genre == this.activeFilter.Genre select book;
+                oldFilteredBooks = filteredBooks;
+            }
+
+            if (this.activeFilter.MinDate != null)
+            {
+                filteredBooks = from book in oldFilteredBooks where book.PublishDate >= this.activeFilter.MinDate select book;
+                oldFilteredBooks = filteredBooks;
+            }
+
+            if (this.activeFilter.MaxDate != null)
+            {
+                filteredBooks = from book in oldFilteredBooks where book.PublishDate <= this.activeFilter.MaxDate select book;
+                oldFilteredBooks = filteredBooks;
+            }
+
+            if (this.activeFilter.MinPrice != null)
+            {
+                filteredBooks = from book in oldFilteredBooks where book.Price >= this.activeFilter.MinPrice select book;
+                oldFilteredBooks = filteredBooks;
+            }
+
+            if (this.activeFilter.Title != null)
+            {
+                filteredBooks = from book in oldFilteredBooks where book.Price <= this.activeFilter.MaxPrice select book;
+            }
+
+            return filteredBooks.ToList();
         }
 
         /// <summary>
@@ -108,8 +168,8 @@ namespace BookStoreWPF
         /// <summary>
         /// Publishes BookChanged event.
         /// </summary>
-        /// <param name="changedBook">Book which was changed.</param>
-        private void PublishBookChanged(ModelBook changedBook)
+        /// <param name="changedBook">Book which was changed or null.</param>
+        private void PublishBookChanged(ModelBook? changedBook)
         {
             if (this.BookChanged != null)
             {
