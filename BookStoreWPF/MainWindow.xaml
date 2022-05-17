@@ -18,25 +18,28 @@
                     </MenuItem>
                     <MenuItem Header="_Clear Filter" Command="{Binding ClearFilter}">
                     </MenuItem>
-                </MenuItem>
-            </Menu>
+            </MenuItem>
+            <MenuItem Header="_Debug Delete Button" Command="{Binding RemoveBook}" CommandParameter="{Binding SelectedBook}">
+            </MenuItem>
+        </Menu>
 
             <!-- Book Info Table -->
         <DataGrid Name ="BookTable" 
-                      RowHeight="20" 
-                      HorizontalAlignment="Stretch" 
-                      VerticalAlignment="Stretch"
-                      ScrollViewer.CanContentScroll="True"
-                      BorderBrush="#000" 
-                      BorderThickness="1"
-                      ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                      ScrollViewer.VerticalScrollBarVisibility="Auto" SelectionChanged="BookTable_SelectionChanged"
-                      ItemsSource="{Binding ViewTable}">
+                  RowHeight="20" 
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch"
+                  ScrollViewer.CanContentScroll="True"
+                  BorderBrush="#000" 
+                  BorderThickness="1"
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto" SelectionChanged="BookTable_SelectionChanged"
+                  ItemsSource="{Binding ViewTable}"
+                  SelectedItem="{Binding SelectedBook, Mode=TwoWay}">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Delete">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="DelBtn" Content="Delete" />
+                            <Button Name="DelBtn" Content="Delete" Command="{Binding RemoveBook}" CommandParameter="{Binding SelectedBook}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

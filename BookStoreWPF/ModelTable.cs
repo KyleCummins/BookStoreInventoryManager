@@ -33,6 +33,8 @@ namespace BookStoreWPF
             this.bookList = new List<ModelBook>();
 
             this.activeFilter = new Filter();
+
+            this.LoadBooks();
         }
 
         /// <summary>
@@ -56,6 +58,16 @@ namespace BookStoreWPF
             this.activeFilter = newFilter;
 
             this.PublishBookChanged(null);
+        }
+
+        /// <summary>
+        /// Placeholder function for populating model with demo data.
+        /// </summary>
+        private void LoadBooks()
+        {
+            this.bookList.Add(new ModelBook("Book1", "Me Myself", "000-0-00-000000-0", "Science Fiction", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$9.99", 0));
+            this.bookList.Add(new ModelBook("Book2", "You Yourself", "000-0-00-000000-1", "Nonfiction", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$19.99", 1));
+            this.bookList.Add(new ModelBook("Book3", "Fred", "000-0-00-000000-2", "Comedy", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$0", 2));
         }
 
         /// <summary>

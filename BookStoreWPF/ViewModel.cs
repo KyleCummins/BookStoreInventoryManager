@@ -28,6 +28,11 @@ namespace BookStoreWPF
         private ModelTable modelTable;
 
         /// <summary>
+        /// Gets or sets book currently selected by the user for editing/deleting.
+        /// </summary>
+        public ViewBook SelectedBook { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ViewModel"/> class.
         /// </summary>
         public ViewModel()
@@ -36,16 +41,11 @@ namespace BookStoreWPF
 
             this.modelTable = new ModelTable();
 
-            // Test Binding
-            this.ViewTable.Add(new ViewBook("Book1", "Me Myself", "000-0-00-000000-0", "Science Fiction", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$9.99", 0));
-            this.ViewTable.Add(new ViewBook("Book2", "You Yourself", "000-0-00-000000-1", "Nonfiction", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$19.99", 1));
-            this.ViewTable.Add(new ViewBook("Book3", "Fred", "000-0-00-000000-2", "Comedy", DateTime.Now.Date.ToString("MM/dd/yyyy"), "$0", 2));
+            this.SelectedBook = new ViewBook("", "", "", "", "", "", 0);
 
             MainWindow mainWindow = System.Windows.Application.Current.Windows.OfType<MainWindow>().First();
 
-            // Organize necessary events here
             this.modelTable.BookChanged += this.OnBookChanged;
-            this.PropertyChanged += mainWindow.OnViewModelPropertyChanged;
 
             this.UpdateNextID();
 
@@ -53,6 +53,11 @@ namespace BookStoreWPF
             this.AddFilter = new AddFilterCommand(this.modelTable);
             this.ClearFilter = new ClearFilterCommand(this.modelTable);
             this.RemoveBook = new DeleteCommand(this.modelTable);
+
+            // Update viewmodel with initial model data
+            this.OnBookChanged(this, new BookChangedEventArgs(null));
+
+            this.PropertyChanged += mainWindow.OnViewModelPropertyChanged;
         }
 
         /// <summary>
