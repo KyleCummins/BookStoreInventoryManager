@@ -81,7 +81,7 @@ namespace BookStoreWPF
 
             if (this.activeFilter.ISBN != null)
             {
-                filteredBooks = (List<ModelBook>)(from book in oldFilteredBooks where book.ISBN == this.activeFilter.ISBN select book);
+                filteredBooks = from book in oldFilteredBooks where book.ISBN == this.activeFilter.ISBN select book;
                 oldFilteredBooks = filteredBooks;
             }
 
